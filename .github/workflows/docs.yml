@@ -23,6 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get install -y pandoc
           pip install sphinx sphinx-rtd-theme nbsphinx ipykernel nbformat nbconvert requests
 
       - name: Create Sphinx config
