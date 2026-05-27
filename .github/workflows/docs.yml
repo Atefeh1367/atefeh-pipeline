@@ -32,12 +32,16 @@ jobs:
           project = 'ATEFEH Pipeline'
           extensions = ['nbsphinx']
           html_theme = 'sphinx_rtd_theme'
+          exclude_patterns = ['_build']
           EOF
+          cp atefeh-pipeline.ipynb docs/
           cat > docs/index.rst << 'EOF'
           ATEFEH Pipeline Documentation
           ==============================
           .. toctree::
              :maxdepth: 2
+
+             atefeh-pipeline
           EOF
 
       - name: Build Sphinx HTML
