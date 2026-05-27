@@ -1,0 +1,37 @@
+name: Build Docs and Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install jupyter nbconvert
+
+      - name: Convert notebook to Python script
+        run: |
+          jupyter nbconvert --to script "atefeh-pipeline.ipynb"
+          mv "atefeh-pipeline.py" "atefeh_pipeline.py"
+
+      - name: Build PyDoc HTML
+        run: |
+          mkdir -p docs/pydoc
+          python -m pydoc -w atefeh_pipeline
+          mv atefeh_pipeline.html docs/pydoc/index.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
