@@ -37,7 +37,7 @@ jobs:
           .. toctree::
              :maxdepth: 2
 
-             atefeh-pipeline -- Full Source <atefeh-pipeline>
+             atefeh-pipeline -- Full Source <ATEFEH Pipeline>
           EOF
       - name: Build Sphinx HTML
         run: |
