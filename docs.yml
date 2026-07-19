@@ -1,0 +1,19 @@
+- name: Create Sphinx config
+        run: |
+          mkdir -p docs
+          cat > docs/conf.py << 'EOF'
+          project = 'ATEFEH Pipeline'
+          extensions = ['nbsphinx']
+          html_theme = 'sphinx_rtd_theme'
+          exclude_patterns = ['_build']
+          EOF
+          cp atefeh-pipeline.ipynb docs/
+          cat > docs/index.rst << 'EOF'
+          ATEFEH Pipeline Documentation
+          ==============================
+
+          .. toctree::
+             :maxdepth: 2
+
+             ATEFEH Pipeline -- Full Source <atefeh-pipeline>
+          EOF
