@@ -33,8 +33,10 @@ jobs:
           cat > docs/index.rst << 'EOF'
           ATEFEH Pipeline Documentation
           ==============================
+
           .. toctree::
              :maxdepth: 2
+
              atefeh-pipeline
           EOF
       - name: Build Sphinx HTML
